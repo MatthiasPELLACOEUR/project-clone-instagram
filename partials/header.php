@@ -11,20 +11,21 @@
     <title>Document</title>
 </head>
 <body>
-<header>
-    <div class="container">
-           
-        <nav>
-            <div class="nav-wrapper  white">
-            
-                <img src="../pictures/instaminiat.png" class="imginsta" alt="logoinsta"> 
-                <span class="appname blue-grey-text text-darken-2">Clone Instagram</span>
-                <ul class="right hide-on-med-and-down ">
-                <li><a href="../index.php" class="linkindex blue-grey lighten-3"><i class="material-icons left">home</i>Home</a></li>
-                </ul>
-            </div>
-        </nav>
-    </div>
-</header>
+
+    <header>
+        <div class="container-fluid">
+            <nav class="row">
+                <div class="nav-wrapper grey darken-4 col s12 offset-s1 col m7 offset-m2">
+                
+                    
+                    <span class="appname white-text text-darken-2 ">Clone Instagram</span>
+                    <ul class="right hide-on-med-and-down ">
+                    <li><a href="../index.php" class="linkindex blue-grey lighten-3"><i class="material-icons left">home</i>Home</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+   
 </body>
 </html>

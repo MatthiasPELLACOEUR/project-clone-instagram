@@ -11,60 +11,44 @@
 </head>
 <body>
     <header>
-    <div class="container">
-           
-        <nav>
-            <div class="nav-wrapper  white">
-            
-                <img src="../pictures/instaminiat.png" class="imginsta" alt="logoinsta"> 
-                <span class="appname blue-grey-text text-darken-2">Clone Instagram</span>
-                <ul class="right hide-on-med-and-down ">
-                <li><a href="../index.php" class="linkindex blue-grey lighten-3"><i class="material-icons left">home</i>Home</a></li>
-              </ul>
-            </div>
-        </nav>
-    </div>
+        <?php
+        include '../partials/header.php';
+        ?>
     </header>
     <section>
-    <div class="container">
-        <div class="row">
-            <div class="col s12 m12">
-                <!-- recup de la photo cliquée et de ses infos (likes, caption, comm) et possibilité de faire
-                les likes, les comm et mis à jour suivant les req. php-->
-                <div class=profile-card>
-                <div class="card">
-                    <div id="imgzoomphoto" class="card-image">
-                        <a href="../photos/photo.php"><img  src="../pictures/divers1.jfif"></a>
-                    </div>
-                    <div>
-                        <a href="./photos/add-like.php" class="waves-effect waves-light btn"><i class="material-icons left">sentiment_very_satisfied</i>Add Like</a>
-                            <a href="./photos/add-like.php" class="waves-effect waves-light btn">Count likes</a>
+        <div class="container">
+            <div class="row">
+                <div class="col s12 offset-s1 col m8 offset-m2">
+                    <!-- recup de la photo cliquée et de ses infos (likes, caption, comm) et possibilité de faire
+                    les likes, les comm et mis à jour suivant les req. php-->
+                    <div class=profile-card>
+                        <div class="card">
+                            <div id="imgzoomphoto" class="card-image">
+                                <a href="../photos/photo.php"><img  src="../pictures/divers1.jfif"></a>
+                            </div>
+                            <div>
+                            <a href="../photos/add-like.php" ><i class="material-icons black-text left">favorite_border</i></a>
+                            
+                            <a href="../photos/add-commentary.php" ><i class="material-icons black-text left">insert_comment</i></a>
                             </br>
-                            <span id ="caption" class="card-caption">Caption</span>    
+                            <a href="../photos/add-like.php" class="black-text left">Count likes</a>
+                            </br>
+                            <!-- mis à jour en même temps que les images -->
+                            <span id ="caption" class="card-caption black-text left">Caption</span>    
                         </div>
+                        <!-- ajout de comm de cette page possible, seul le  dernier commentaire apparait suite à mis à jour-->
                         <div class="card-content">
-                            <a href="./photos/add-commentary.php" class="waves-effect waves-light btn"><i class="material-icons left">insert_comment</i>Let a Comment</a>
-                            </br>
-                            <span id ="lastcomment" class="card-caption">last Commentary</span>  
+                            <span id ="lastcomment" class="card-caption black-text left">Last Commentary</span>  
+                        </div>
                     </div>
                 </div>
-            </div>
-        <div>    
-    </div>    
+            <div>    
+        </div> 
     </section>
     <footer>
         <?php
         include '../partials/footer.php'
         ?>
-        <div class="container">
-            <div class="nav-wrapper  white">    
-                <div class="footer-copyright">
-                © 2020 Copyright Matthias Vero clone Instagram
-                    <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
-                </div>
-                
-            </div>
-        </div>
     </footer>
    <script href="./js/materialize.min.js"></script>
     <script href="./js/main.js"></script>

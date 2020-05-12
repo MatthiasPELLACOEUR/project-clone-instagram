@@ -9,7 +9,14 @@ body {
     background-color: rgb(41, 42, 44);
     color: #ffffff;
 }
-
+nav.row{
+    background-color: #212121;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+.nav-wrapper{
+    margin-left: 25px;
+}
 @media only screen and (min-width: 993px) and (max-width: 1540px) {
     .register {
         width: 90%!important;
@@ -64,13 +71,6 @@ section {
 
 #nickname{
     font-weight: bold;
-    
-}
-.row{
-    
-    
-}
-#nickname{
     text-align: left;
 }
 .card{
@@ -81,14 +81,13 @@ section {
     margin-top: 15px;
 }
 
-#imgprofile{
-    width: 25%;
-    height: 25%;
+#imgregprofile{
+    max-width: 25%;
+    max-height: 25%;
+    margin-top: 50px;
     margin-left: 10px;
     margin-right: 10px;
     margin-bottom: 10px;
-    margin-bottom: 10px;
-
 }
 #nicknameprofile{
     font-weight: bold;
