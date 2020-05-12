@@ -11,13 +11,13 @@
 </head>
 <body>
     <header>
-    <div class="container">
+    <div class="container-fluid">
                  
         <nav>
-            <div class="nav-wrapper  white">
+            <div class="nav-wrapper black">
             
                 <img src="./pictures/instaminiat.png" class="imginsta" alt="logoinsta"> 
-                <span class="appname blue-grey-text text-darken-2">Clone Instagram</span>
+                <span class="appname blue-grey-text text-lighten-2">Clone Instagram</span>
                 <ul class="right hide-on-med-and-down ">
                 <li><a href="./profile/profile-user.php" class="linkprofile blue-grey lighten-3">Profile Nickname</a></li>
                 
