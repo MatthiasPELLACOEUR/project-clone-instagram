@@ -12,27 +12,42 @@ if(isset($_POST['action'])) {
     $dateTime = date('Y-m-d H:i:s');
 
     if(!empty($_POST['nickname']) && !empty($_POST['mail']) && !empty($_POST['mail2']) && !empty($_POST['password']) && !empty($_POST['password2'])){
-
-        $nicknameLen = strlen($nickname);
-        if($nicknameLen <= 255) {
-            if($mail == $mail2) {
-                if(filter_var($mail, FILTER_VALIDATE_EMAIL)) {
-                    if($password == $password2) {
-                        $insertUser = $bdd->prepare('INSERT INTO users(nickname, password, mail, created_at, ip_address) VALUES (?, ?, ?, ?, ?)');
-                        $insertUser->execute(array($nickname, $password, $mail, $dateTime, getIp()));
-                        $erreur = "Your account has been successfully created.";
-                    }else {
-                        $erreur = 'Your passwords do not match.';
+        $reqNickname = $bdd->prepare('SELECT * FROM users WHERE nickname = ?');
+        $reqNickname->execute(array($nickname));
+        $nicknameExist = $reqNickname->rowCount();
+        if($nicknameExist == 0) {
+           $nicknameLen = strlen($nickname);
+            if($nicknameLen <= 255) {
+                if($mail == $mail2) {
+                    if(filter_var($mail, FILTER_VALIDATE_EMAIL)) {
+                        $reqMail = $bdd->prepare('SELECT * FROM users WHERE mail = ?');
+                        $reqMail->execute(array($mail));
+                        $mailExist = $reqMail->rowCount();
+                        if($mailExist == 0) {
+                            if($password == $password2) {
+                                $insertUser = $bdd->prepare('INSERT INTO users(nickname, password, mail, created_at, ip_address) VALUES (?, ?, ?, ?, ?)');
+                                $insertUser->execute(array($nickname, $password, $mail, $dateTime, getIp()));
+                                $erreur = "Your account has been successfully created.";
+                                header('Location: index.php');
+                            }else {
+                                $erreur = 'Your passwords do not match.';
+                            }
+                        }
+                        else {
+                            $erreur = 'This email is already used.';
+                        }
                     }
-                }
-                else {
-                    $erreur = 'Your email address is not valid.';
+                    else {
+                        $erreur = 'Your email address is not valid.';
+                    }
+                }else {
+                    $erreur = 'Your email addresses do not match.';
                 }
             }else {
-                $erreur = 'Your email addresses do not match.';
-            }
+                $erreur = 'Your nickname must not exceed 255 characters.';
+            } 
         }else {
-            $erreur = 'Your nickname must not exceed 255 characters.';
+            $erreur = 'This nickname is already used';
         }
 
     }else {
