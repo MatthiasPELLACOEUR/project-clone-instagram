@@ -14,6 +14,19 @@
     <?php
     include '../partials/header.php';
     ?>
+    <div class="container">
+           
+        <nav>
+            <div class="nav-wrapper  white">
+            
+                <img src="../pictures/instaminiat.png" class="imginsta" alt="logoinsta"> 
+                <span class="appname blue-grey-text text-darken-2">Clone Instagram</span>
+                <ul class="right hide-on-med-and-down ">
+                <li><a href="../index.php" class="linkindex blue-grey lighten-3"><i class="material-icons left">home</i>Home</a></li>
+              </ul>
+            </div>
+        </nav>
+    </div>
     </header>
     <section>
     <div class="container">
@@ -40,6 +53,15 @@
         <?php
         include '../partials/footer.php'
         ?>
+        <div class="container">
+            <div class="nav-wrapper  white">    
+                <div class="footer-copyright">
+                © 2020 Copyright Matthias Vero clone Instagram
+                    <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+                </div>
+                
+            </div>
+        </div>
     </footer>
    <script href="./js/materialize.min.js"></script>
     <script href="./js/main.js"></script>

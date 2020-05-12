@@ -26,6 +26,21 @@
         </div>
     </header>
     
+    <div class="container-fluid">
+                 
+        <nav>
+            <div class="nav-wrapper black">
+            
+                <img src="./pictures/instaminiat.png" class="imginsta" alt="logoinsta"> 
+                <span class="appname blue-grey-text text-lighten-2">Clone Instagram</span>
+                <ul class="right hide-on-med-and-down ">
+                <li><a href="./profile/profile-user.php" class="linkprofile blue-grey lighten-3">Profile Nickname</a></li>
+                
+            </ul>
+            </div>
+        </nav>
+    </div>
+    </header>
     <section>
         <div class="container">
             <div class="row">
@@ -35,6 +50,9 @@
                     <div class="card">
                     <!-- le fil d'actualité sera mis à jour à chq fois q'un user mettra de nouvelles photos-->
                         <!--les likes se feront sur cette page   -->
+                    <h6 class="card-title" id="nickname">Nickname</h6>
+                    <div class="card">
+                        
                         <div class="card-image">
                             <img id ="postimg" src="./pictures/divers1.jfif">
                             <a href="./photos/add-like.php" class="waves-effect waves-light btn"><i class="material-icons left">sentiment_very_satisfied</i>Add Like</a>
@@ -44,6 +62,8 @@
                             <span id ="caption" class="card-caption">Caption</span>    
                         </div>
                         <!-- ajout de comm de cette page possible, seul le  dernier commentaire apparait suite à mis à jour-->
+                            <span id ="caption" class="card-caption">Caption</span>    
+                        </div>
                         <div class="card-content">
                             <a href="./photos/add-commentary.php" class="waves-effect waves-light btn"><i class="material-icons left">insert_comment</i>Let a Comment</a>
                             </br>
@@ -63,6 +83,17 @@
     </footer>
 
 
+    <footer>
+        <div class="container">
+            <div class="nav-wrapper  white">    
+                <div class="footer-copyright">
+                © 2020 Copyright Matthias Vero clone Instagram
+                    <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+                </div>
+                
+            </div>
+        </div>
+    </footer>
     <script href="./js/materialize.min.js"></script>
     <script href="./js/main.js"></script>
 </body>
