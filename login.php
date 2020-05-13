@@ -1,4 +1,5 @@
-<?php 
+<?php
+// session_destroy();
 session_start();
 
 require 'connection.php';
@@ -50,6 +51,8 @@ if(isset($_POST['formConnect'])){
                 <label for="nickname">Nickname :</label><input type="text" name="nicknameConnect" class="input-yellow" value="<?php if(isset($nickname)) { echo $nickname; }?>"><br>
                 <!-- <label for="mail">Mail :</label><input type="email" name="mail" class="input-red" value="<?php if(isset($mail)) { echo $mail; }?>"><br> -->
                 <label for="password">Password :</label><input type="password" name="passwordConnect" class="input-pink"><br>
+                <label for="register">Haven't an account ? </label>
+                    <a href="/register.php">Register!</a>
                 <button class="btn waves-effect waves-light purple right" type="submit" name="formConnect">Login
                     <i class="material-icons right">chevron_right</i>
                 </button>

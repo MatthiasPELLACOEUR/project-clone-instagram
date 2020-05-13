@@ -90,12 +90,17 @@ if(isset($_POST['action'])) {
                 <button class="btn waves-effect waves-light purple right" type="submit" name="action">Register
                     <i class="material-icons right">save</i>
                 </button>
+                
             </form>
             <?php
                 if(isset($erreur)){
                     echo '<font color="red">'.$erreur.'</font>';
                 }
             ?>
+
+            <label for="register">Have an account ? </label>
+                    <a href="/login.php">Login !</a>
+
         </div>
     </section>
 

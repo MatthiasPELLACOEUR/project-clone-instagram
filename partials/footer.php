@@ -10,14 +10,14 @@
     <title>footer</title>
 </head>
 <body>
-<div class="container">
-            <div class="nav-wrapper grey darken-4 ">    
-                <div class="footer-copyright">
-                © 2020 Copyright Matthias Vero clone Instagram
-                    <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
-                </div>
-                
-            </div>
+<div class="container-fluid">
+    <div class="nav-wrapper grey darken-4">    
+        <div class="footer-copyright">
+            <span>© 2020 Copyright Matthias Vero clone Instagram</span>
+            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+        </div>
+        
+    </div>
 </div>    
 </body>
 </html>

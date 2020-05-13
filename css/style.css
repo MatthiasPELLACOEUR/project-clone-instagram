@@ -14,12 +14,11 @@ nav.row{
     /* margin-left: 100px; */
     margin-right: 100px;
 }
-.nav-wrapper{
-    margin-left: 25px;
-}
+
 @media only screen and (min-width: 993px) and (max-width: 1540px) {
     .register {
         width: 90%!important;
+        transition: all ease-in-out 1s;
     }
 }
 
@@ -75,6 +74,10 @@ section {
 }
 .card{
     text-align: center;
+}
+
+.card-content{
+    padding: 0px;
 }
 .profilephoto{
     width:10%;
