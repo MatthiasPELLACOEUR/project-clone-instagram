@@ -1,5 +1,15 @@
 <?php
 session_start();
+
+// $login = boolval($_SESSION['nickname'])->rowCount();
+// var_dump((bool) $_SESSION['nickname']);
+
+if($_SESSION['nickname'] == TRUE) {
+    $username = '<li><a href="./profile/profile-user.php" class="linkprofile grey darken-4 ">'.$_SESSION['nickname'].'</a></li>';
+}else {
+    $username = '<li><a href="/login.php" class="linkprofile grey darken-4 ">Login</a></li>';
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +32,7 @@ session_start();
                     
                     <span class="appname white-text text-darken-2 ">Clone Instagram</span>
                     <ul class="right hide-on-med-and-down ">
-                    <li><a href="./profile/profile-user.php" class="linkprofile grey darken-4 "><?= $_SESSION['nickname'] ?></a></li>
+                        <?php echo $username ?>
                     </ul>
                 </div>
             </nav>
