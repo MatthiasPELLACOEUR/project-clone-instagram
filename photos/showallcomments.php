@@ -42,8 +42,8 @@ $allcomments=$allcommentsshow->fetchAll(PDO :: FETCH_ASSOC);
                     </div>
                     
                     
-                    <?php foreach($allcomments as $comment):?>
-                       <?php if ($comment['photos_id']==$photos['id']){ ?>
+                    <?php foreach($allcomments as $comment): ?>
+                       <?php if ($comment['photos_id']==$photos['id']) { ?>
                         <div class="captioncomments">
                             <p class="textarea1 "><?=$comment['caption']?></p>
                             
@@ -52,9 +52,9 @@ $allcomments=$allcommentsshow->fetchAll(PDO :: FETCH_ASSOC);
                         <div>
                             <span class="textarea1  left strong"><?=$comment['nickname']?></span></br>
                             <span class="textarea1"><?=$comment['comment']?></span>
-                        </div>
-                        <?php}?>       
-                    <?php endforeach;?>
+                        </div>   
+                    <?php } 
+                    endforeach;?>
                      
                 <div>    
             </div>

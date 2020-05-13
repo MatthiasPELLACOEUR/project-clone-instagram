@@ -37,8 +37,6 @@ if (isset($_POST['nickname']) and isset($_POST['photosid']) and isset($_POST['co
                     ]);
 }
   
-
-
 ?>
 <!DOCTYPE html>$
 <html lang="en">
