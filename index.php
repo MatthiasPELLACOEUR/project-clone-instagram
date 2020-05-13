@@ -84,6 +84,8 @@ $comments = $reqComments->fetchAll();
                                         <span class="nickname card-caption black-text left"><?= $comment['nickname'] ?>: </span>
                                         <span class="lastcomment card-caption black-text left"><?= $comment['comment'] ?></span><br>
                                     <?php endforeach; ?>
+                                    <!-- rajout vero bton show more -->
+                                    <i class="material-icons right"><a href="./photos/showallcomments" class="material-icons black-text right">textsms</a></i><br>
                                 </div>
                             </div>
                         </div>
@@ -98,10 +100,6 @@ $comments = $reqComments->fetchAll();
     <?php
     include './partials/footer.php'
     ?>
-
-
-    <script src="./js/materialize.min.js"></script>
-    <script src="./js/main.js"></script>
 </body>
 
 </html>

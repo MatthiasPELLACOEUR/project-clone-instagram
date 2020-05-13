@@ -1,12 +1,15 @@
 <?php
+session_start();
 // connect bdd
 require '../connection.php';
-// renommer les variables
-if (isset($_POST['nickname']) and isset($_POST['photosid']) and isset ($_POST['comment']));
+// names of variables
+
+if (isset($_POST['nickname']) and isset($_POST['photosid']) and isset($_POST['comment']))
+{
     $nickname = htmlspecialchars($_POST['nickname']);
-    // var_dump($nickname);
-    $photosid = $_POST['photosid'];
-    // var_dump($photosid);exit;
+    var_dump($nickname); 
+    $photosid =3;
+    var_dump($photosid);
     $comment  =  $_POST['comment'];
     $dateTime = date('Y-m-d H:i:s');
     $ipadress = getIp();
@@ -22,7 +25,7 @@ if (isset($_POST['nickname']) and isset($_POST['photosid']) and isset ($_POST['c
     $photo=$photosstatement->fetch(PDO :: FETCH_ASSOC);
     $photosid=$photo['id'];
     var_dump($photosid);
-    // inserer les commentaires fait par le user et la photo concernée
+    // insert comment into table 'comments'
     $requestinsertcomment=$bdd->PREPARE('INSERT INTO comments (photos_id,users_id,comment,created_at,ip_address) 
                                          VALUES(?,?,?,?,?)');
     $requestinsertcomment->EXECUTE([
@@ -30,13 +33,14 @@ if (isset($_POST['nickname']) and isset($_POST['photosid']) and isset ($_POST['c
                     $usersid,
                     $comment,
                     $dateTime,
-                    $ipadress,
+                    $ipadress
                     ]);
-
+}
+  
 
 
 ?>
-<!DOCTYPE html>
+<!DOCTYPE html>$
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -45,7 +49,7 @@ if (isset($_POST['nickname']) and isset($_POST['photosid']) and isset ($_POST['c
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
-    <title>clone-instagram</title>
+    <title>addcomments</title>
 </head>
 <body>
     <header>
@@ -56,33 +60,33 @@ if (isset($_POST['nickname']) and isset($_POST['photosid']) and isset ($_POST['c
     <section>
     <div class="container">
         
-            <!-- nickname qui envoie le comm=user connect remplacé par la variable -->
-            <form action="../photos/add-commentary.php" method="POST" class="formaddcomm col s12 m8 offset -m2">
-                <div class="row">
-                    <!-- pour récupérer l'url de la photo cliquée! -->
-                    <div>
-                    <input type="hidden" name="photosid" id="photosid" value="1">
-                    </div>
-
-                    <div class="input-field col s4 offset -s4">
-                    <i class="material-icons prefix">account_circle</i>
-                    <input id="icon_prefix" type="text" name="nickname" class="validate white-text" placeholder="nickname">
-                    </div>
-                </div>    
-                <!-- commentaire concernant la photo ou on a cliqué -->
-            
-                <div class="row col s12 m10">    
-                    <div class="input-field col white-text s8">
-                        <textarea id="textarea1" name ="comment" class="materialize-textarea white-text" placeholder="Let a Comment"></textarea>
-                    </div>
-                    
-                </div>
-                <button class="btn waves-effect waves-light blue-grey lighten-3 col s1 m2" type="submit" name="action">Submit
-                    <i class="material-icons right">send</i>
-                </button>
-                    
-            </form>
         
+        <form action="../photos/add-commentary.php" method="POST" class="formaddcomm col s12 m8 offset -m2">
+            <div class="row">
+                <!--  recup the $photoid to send into comments -->
+                <div>
+                <input type="hidden" name="photosid" id="photosid" value="<?php $photosid?>">
+                </div>
+
+                <div class="input-field col s4 offset -s4">
+                <i class="material-icons prefix">account_circle</i>
+                <input id="icon_prefix" type="text" name="nickname" class="validate white-text" placeholder="nickname" value="<?= $_SESSION['nickname'] ?>">
+                </div>
+            </div>    
+            <!-- to send comment into comments-->
+        
+            <div class="row col s12 m10">    
+                <div class="input-field col white-text s8">
+                    <textarea id="textarea1" name ="comment" class="materialize-textarea white-text" placeholder="Let a Comment"></textarea>
+                </div>
+                
+            </div>
+            <button class="btn waves-effect waves-light blue-grey lighten-3 col s1 m2" type="submit" name="action">Submit
+                <i class="material-icons right">send</i>
+            </button>
+                
+        </form>
+    
     </div>    
         
     </section>
@@ -91,7 +95,6 @@ if (isset($_POST['nickname']) and isset($_POST['photosid']) and isset ($_POST['c
         include '../partials/footer.php'
         ?>
     </footer>
-   <script href="./js/materialize.min.js"></script>
-    <script href="./js/main.js"></script>
+  
 </body>
 </html>
