@@ -2,28 +2,33 @@
 
 require 'connection.php';
 
-
+    //verification click button submit + creation variable of the form
 if(isset($_POST['action'])) {
     $nickname = htmlspecialchars($_POST['nickname']);
     $mail = htmlspecialchars($_POST['mail']);
     $mail2 = htmlspecialchars($_POST['mail2']);
     $password = sha1($_POST['password']);
     $password2 = sha1($_POST['password2']);
-    $dateTime = date('Y-m-d H:i:s');
 
+        // verification all fields are completed
     if(!empty($_POST['nickname']) && !empty($_POST['mail']) && !empty($_POST['mail2']) && !empty($_POST['password']) && !empty($_POST['password2'])){
+            // verification only 1 nickname in the database
         $reqNickname = $bdd->prepare('SELECT * FROM users WHERE nickname = ?');
         $reqNickname->execute(array($nickname));
         $nicknameExist = $reqNickname->rowCount();
         if($nicknameExist == 0) {
+                //verification length nickname
            $nicknameLen = strlen($nickname);
             if($nicknameLen <= 255) {
                 if($mail == $mail2) {
+                        //verification if valid email
                     if(filter_var($mail, FILTER_VALIDATE_EMAIL)) {
+                            // verification only 1 email in the database 
                         $reqMail = $bdd->prepare('SELECT * FROM users WHERE mail = ?');
                         $reqMail->execute(array($mail));
                         $mailExist = $reqMail->rowCount();
                         if($mailExist == 0) {
+                                // creation account in database
                             if($password == $password2) {
                                 $insertUser = $bdd->prepare('INSERT INTO users(nickname, password, mail, created_at, ip_address) VALUES (?, ?, ?, ?, ?)');
                                 $insertUser->execute(array($nickname, $password, $mail, $dateTime, getIp()));

@@ -20,7 +20,7 @@
                     
                     <span class="appname white-text text-darken-2 ">Clone Instagram</span>
                     <ul class="right hide-on-med-and-down ">
-                    <li><a href="../index.php" class="linkindex blue-grey lighten-3"><i class="material-icons left">home</i>Home</a></li>
+                    <li><a href="../index.php" class="linkindex grey darken-4"><i class="material-icons left">home</i>Home</a></li>
                     </ul>
                 </div>
             </nav>

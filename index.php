@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +22,7 @@
                     
                     <span class="appname white-text text-darken-2 ">Clone Instagram</span>
                     <ul class="right hide-on-med-and-down ">
-                    <li><a href="./profile/profile-user.php" class="linkprofile blue-grey lighten-3 ">Profile Nickname</a></li>
+                    <li><a href="./profile/profile-user.php" class="linkprofile grey darken-4 "><?= $_SESSION['nickname'] ?></a></li>
                     </ul>
                 </div>
             </nav>

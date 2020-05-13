@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +10,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
-    <title>clone-instagram</title>
+    <title>Profile</title>
 </head>
 <body>
     <header>
@@ -22,7 +25,7 @@
                 <!-- mis à jour avec une req php avec recup des variables -->
                 <div class=profile-card>
                 <img class="profilephoto circle responsive-img" src="../pictures/divers1.jfif" alt="photo-profile">
-                <span class="card-title" id="nicknameprofile">Nickname</span>
+                <span class="card-title" id="nicknameprofile"><?=$_SESSION['nickname']?></span>
                 </div>
                 <!-- insert into table photos et affichage et mis à jour suivant ces requetes -->
                 <div class="card">
