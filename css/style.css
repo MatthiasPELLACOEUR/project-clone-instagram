@@ -5,8 +5,7 @@
     }
 }
 @media only screen and (min-width: 993px) and (max-width: 1200px){
-    .container {
-        /* margin-left: 0px!important; */
+    header.container {
         width: 70%;
         transition: all ease-in-out 0.7s;
         display: flex!important;
@@ -19,7 +18,7 @@
     }
 }
 @media only screen and (min-width: 1201px) and (max-width: 1500px){
-    .container {
+    header.container {
        /* margin-left: 0px!important;  */
         width: 70%;
         transition: all ease-in-out 0.7s;
@@ -69,7 +68,7 @@ nav.row{
     width: 100%;
 }
 
-.container {
+header.container {
     transition: all ease-in-out 0.7s;
     display: flex;
     justify-content: space-around;
@@ -121,7 +120,6 @@ section {
 .linkprofile{
     font-weight: bold;
 }
-
 #nickname{
     font-weight: bold;
     text-align: left;
@@ -129,37 +127,47 @@ section {
 .card{
     text-align: center;
 }
-
 .card-content{
     padding: 0px;
 }
-.profilephoto{
-    width:10%;
-    margin-top: 15px;
-}
-.line-photos {
-    display: flex;
-    flex-direction: row;
-}
 .chip-profile{
     background-color: rgb(41, 42, 44);
-}
-.photos-profile {
-    margin-right: 25px;
-    background-color:rgb(41, 42, 44);
-    box-shadow:  0 0px 0px 0 rgba(0,0,0,0), 0 0px 0px 0px rgba(0,0,0,0), 0 0px 0px 0 rgba(0,0,0,0);
-    -webkit-box-shadow: 0 0px 0px 0 rgba(0,0,0,0), 0 0px 0px 0px rgba(0,0,0,0), 0 0px 0px 0 rgba(0,0,0,0);
-}
-.imgregprofile{
-    max-width: 60%;
-    margin-right: 0px!important;
 }
 #nicknameprofile{
     font-weight: bold;
     color: white;
     font-size: 1.5em;
 }
+.photos-profile{
+    max-width: 75%;
+}
+.photos-profile a{
+    display: block;
+    max-height: 270px;
+    max-width: 300px;
+    overflow: hidden;
+}
 .max-width{
-    max-width: 80%!important;
-    max-height: 50%!important;
+    display: block;
+    max-height: 100%;
+    max-width: 100%;
+}
+.dropdown-color{
+    background-color: rgb(41, 42, 44);
+}
+.dropdown-color a{
+    color: white!important;
+}
+
+.nickname {
+    display: inline-block;
+}
+
+.nickname .prefix {
+    position: relative;
+    top : 50px;
+    left: -30px;
+}
+.comment span.nickname{
+    font-weight: bold!important;
 }

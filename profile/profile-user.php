@@ -37,23 +37,25 @@ $photos = $reqPhotos->fetchAll();
     <section>
         <div class="container">
             <div class="main">
-                
-                    <!-- mis à jour avec une req php avec recup des variables -->
-                    <div class="chip chip-profile">
-                        <!-- <img src="../pictures/<?php echo $photo['urlphoto'] ?>" alt="Contact Person"> -->
-                        <span class="card-title" id="nicknameprofile"><?= $_SESSION['nickname'] ?></span>
-                    </div>
-                    
-                    <div class="col s12 m6 item-card line-photos">
-                    <?php foreach ($photos as $photo) : ?>
-                        <!-- insert into table photos et affichage et mis à jour suivant ces requetes -->
-                        <div class="card photos-profile">
-                                <a href="../photos/photo.php">
-                                <img class="max-width" src="../pictures/<?php echo $photo['urlphoto'] ?>">
-                                </a>
+                <div class="row">
+                    <div class="col s12 m4">
+                        <div class="chip chip-profile">                    
+                            <!-- chip here -->
+                            <span class="card-title" id="nicknameprofile"><?= $_SESSION['nickname'] ?></span>
                         </div>
-                    <?php endforeach; ?>
                     </div>
+                </div>
+                <div class="row">
+                    <?php foreach ($photos as $photo) : ?>
+                    <div class="col s4 m4 l4">
+                        <div class="card photos-profile">
+                            <a href="../photos/photo.php">
+                                <img class="max-width" src="../pictures/<?php echo $photo['urlphoto'] ?>">
+                            </a>
+                        </div>
+                    </div>
+                    <?php endforeach; ?>
+                </div>
             </div>
         </div>
     </section>

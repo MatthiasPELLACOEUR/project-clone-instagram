@@ -42,29 +42,26 @@ require 'partials/bdd-queries.php';
 
                             <!-- Dropdown Trigger -->
                             <li>
-                                <button class='btn waves-effect waves-light dropdown-trigger red accent-3' data-target='dropdown-menu' href='#'><?php echo $_SESSION['nickname'] ?>
-                                    <i class="dropdown-arrow material-icons right">keyboard_arrow_down</i>
+                                <button class="btn waves-effect waves-light dropdown-trigger red accent-3" data-target='dropdown-menu' href='#'><?php echo $_SESSION['nickname'] ?>
+                                    <i class="dropdown-arrow material-icons right">arrow_drop_down</i>
                                 </button>
                             </li>
 
                             <!-- Dropdown Structure -->
                             <ul id='dropdown-menu' class='dropdown-content'>
-                                <li><a href="#!">one</a></li>
-                                <li><a href="#!">two</a></li>
-                                <li class="divider" tabindex="-1"></li>
-                                <li><a href="#!">three</a></li>
-                                <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
-                                <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
+                                <li class="dropdown-color"><a href="/profile/profile-user.php"><?= $_SESSION['nickname'] ?></a></li>
+                                <li class="dropdown-color"><a href="/profile/add-photos.php">Add Photo</a></li>
+                                <li class="dropdown-color"><a href="logout.php">Disconnect</a></li>
                             </ul>
                         </ul>
                     </div>
                 </div>
-            </nav>  
+            </nav>
         </div>
     </header>
 
     <section>
-        <div  class="container-fluid">
+        <div class="container-fluid">
             <div class="row">
                 <div id="main" class="col s12 offset-s1 m6 l4">
                     <!-- le fil d'actualité sera mis à jour à chq fois q'un user mettra de nouvelles photos-->
@@ -80,7 +77,7 @@ require 'partials/bdd-queries.php';
                                     <!--les likes se feront sur cette page   -->
                                     <a href="./photos/add-like.php"><i class="material-icons black-text left">favorite_border</i></a>
                                     <!-- ajout de comm de cette page possible, seul le  dernier commentaire apparait suite à mis à jour-->
-                                    <i class="material-icons left"><a href="./photos/add-commentary.php" class="material-icons black-text left">insert_comment</a></i><br>
+                                    <i class="material-icons left"><a href="./photos/add-commentary.php?id=<?= $photo['photo_id'] ?>" class="material-icons black-text left">insert_comment</a></i><br>
                                     <a href="./photos/add-like.php" class="black-text left"><?= $like['total'] ?> likes</a><br>
                                 </div>
 
@@ -88,10 +85,11 @@ require 'partials/bdd-queries.php';
                                     <span class="caption card-caption black-text left"><?= $photo['caption'] ?></span><br>
                                 </div>
                                 <div class="comment">
-                                    <?php foreach ($comments as $comment) : ?>
-                                        <span class="nickname card-caption black-text left"><?= $comment['nickname'] ?>: </span>
-                                        <span class="lastcomment card-caption black-text left"><?= $comment['comment'] ?></span><br>
-                                    <?php endforeach; ?>
+                                <?php foreach ($comments as $comment) {
+                                     if($photo['photo_id'] == $comment['photos_id']){ ?>
+                                        <span class="nickname card-caption black-text left"><?= $comment['nickname'] ?></span>
+                                        <span class="lastcomment card-caption black-text left">: <?= $comment['comment'] ?></span><br>
+                                    <?php }}; ?>
                                     <!-- rajout vero bton show more -->
                                     <i class="material-icons right"><a href="./photos/showallcomments.php" class="material-icons black-text right">textsms</a></i><br>
                                 </div>
