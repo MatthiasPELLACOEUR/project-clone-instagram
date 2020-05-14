@@ -24,7 +24,7 @@ if(isset($_POST['formConnect'])){
         $erreur = 'All fields must be completed.';
     }
 
-}
+};
 
 ?>
 
@@ -49,7 +49,7 @@ if(isset($_POST['formConnect'])){
             <br><br><br>
             <form action="" method="post">
                 <label for="nickname">Nickname :</label><input type="text" name="nicknameConnect" class="input-yellow" value="<?php if(isset($nickname)) { echo $nickname; }?>"><br>
-                <!-- <label for="mail">Mail :</label><input type="email" name="mail" class="input-red" value="<?php if(isset($mail)) { echo $mail; }?>"><br> -->
+                <!-- <label for="mail">Mail :</label><input type="email" name="mail" class="input-red" value=""><br> -->
                 <label for="password">Password :</label><input type="password" name="passwordConnect" class="input-pink"><br>
                 <label for="register">Haven't an account ? </label>
                     <a href="/register.php">Register!</a>
@@ -58,6 +58,7 @@ if(isset($_POST['formConnect'])){
                 </button>
             </form>
             <?php
+
                 if(isset($erreur)){
                     echo '<font color="red">'.$erreur.'</font>';
                 }

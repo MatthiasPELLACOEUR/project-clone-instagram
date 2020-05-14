@@ -1,9 +1,7 @@
 <?php
 session_start();
 
-require 'connection.php';
-// $login = boolval($_SESSION['nickname'])->rowCount();
-// var_dump((bool) $_SESSION['nickname']);
+require './connection.php';
 
 if ($_SESSION['nickname'] == TRUE) {
     $username = '<li><a href="./profile/profile-user.php" class="linkprofile">' . $_SESSION['nickname'] . '</a></li>';
@@ -11,18 +9,7 @@ if ($_SESSION['nickname'] == TRUE) {
     header('Location: ./login.php');
 }
 
-$reqPhotos = $bdd->query('SELECT photos.*, users.* FROM photos INNER JOIN users ON photos.user_id = users.id WHERE photos.user_id = users.id');
-
-$photos = $reqPhotos->fetchAll();
-
-
-$reqLikes = $bdd->query('SELECT COUNT(photos_id) as total FROM likes INNER JOIN photos ON photos.id = likes.photos_id WHERE photos.id = likes.photos_id');
-
-$like = $reqLikes->fetch(PDO::FETCH_ASSOC);
-
-$reqComments = $bdd->query('SELECT comments.*, users.* FROM comments INNER JOIN photos ON photos.id = comments.photos_id INNER JOIN users ON users.id = comments.users_id ORDER BY comments.created_at LIMIT 2');
-
-$comments = $reqComments->fetchAll();
+require 'partials/bdd-queries.php';
 
 ?>
 
@@ -36,7 +23,7 @@ $comments = $reqComments->fetchAll();
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
-    <title>clone-instagram</title>
+    <title>Clone Instagram</title>
 </head>
 
 <body>
@@ -48,6 +35,7 @@ $comments = $reqComments->fetchAll();
                         <span class="appname white-text text-darken-2 ">Clone Instagram</span>
                         <ul class="right hide-on-med-and-down">
                             <?php echo $username ?>
+                            <li><a href="../profile/add-photos.php" id="btnaddphoto"><i class="medium material-icons white-text center-align">add_to_photos</i></a></li>
                             <li><a href="/logout.php">Disconnect</a></li>
                         </ul>
                         <ul class="right hide-on-large-only" id="test">

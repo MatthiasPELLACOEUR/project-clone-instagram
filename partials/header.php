@@ -18,8 +18,14 @@
                 <div class="nav-wrapper grey darken-4 col s12 offset-s1 col m7 offset-m2">
                     <span class="appname white-text text-darken-2 ">Clone Instagram</span>
                     <ul class="right hide-on-med-and-down ">
-                    <li><a href="../index.php" class="linkindex grey darken-4"><i class="material-icons left">home</i>Home</a></li>
+                        <li><a href="../index.php" class="linkindex grey darken-4"><i class="material-icons left">home</i>Home</a></li>
+                        <li><a href="../profile/add-photos.php" id="btnaddphoto"><i class="medium material-icons white-text center-align">add_to_photos</i></a></li>
                     </ul>
+                    <ul class="right hide-on-large-only">
+                        <li><a href="../index.php" class="linkindex grey darken-4"><i class="material-icons left">home</i></a></li>
+                        <li><a href="../profile/add-photos.php" id="btnaddphoto"><i class="medium material-icons white-text center-align">add_to_photos</i></a></li>
+
+                    </ul>  
                 </div>
             </nav>
         </div>

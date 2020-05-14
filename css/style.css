@@ -137,17 +137,29 @@ section {
     width:10%;
     margin-top: 15px;
 }
-#imgregprofile{
-    max-width: 25%;
-    max-height: 25%;
-    margin-top: 50px;
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-bottom: 10px;
+.line-photos {
+    display: flex;
+    flex-direction: row;
+}
+.chip-profile{
+    background-color: rgb(41, 42, 44);
+}
+.photos-profile {
+    margin-right: 25px;
+    background-color:rgb(41, 42, 44);
+    box-shadow:  0 0px 0px 0 rgba(0,0,0,0), 0 0px 0px 0px rgba(0,0,0,0), 0 0px 0px 0 rgba(0,0,0,0);
+    -webkit-box-shadow: 0 0px 0px 0 rgba(0,0,0,0), 0 0px 0px 0px rgba(0,0,0,0), 0 0px 0px 0 rgba(0,0,0,0);
+}
+.imgregprofile{
+    max-width: 60%;
+    margin-right: 0px!important;
 }
 #nicknameprofile{
     font-weight: bold;
-    text-align: center important!;
+    color: white;
     font-size: 1.5em;
-    
+}
+.max-width{
+    max-width: 80%!important;
+    max-height: 50%!important;
 }
