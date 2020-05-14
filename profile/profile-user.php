@@ -9,7 +9,7 @@ if ($_SESSION['nickname'] == TRUE) {
     header('Location: ./login.php');
 }
 
-$reqPhotos = $bdd->query('SELECT photos.*, users.* FROM photos INNER JOIN users ON photos.user_id = users.id WHERE photos.user_id ='.$_SESSION['id'].'');
+$reqPhotos = $bdd->query('SELECT photos.*, users.* FROM photos INNER JOIN users ON photos.user_id = users.id WHERE photos.user_id ='.$_SESSION['id'].' ORDER BY photos.created_at DESC');
 
 $photos = $reqPhotos->fetchAll();
 
