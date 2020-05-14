@@ -91,7 +91,7 @@ require 'partials/bdd-queries.php';
                                         <span class="lastcomment card-caption black-text left">: <?= $comment['comment'] ?></span><br>
                                     <?php }}; ?>
                                     <!-- rajout vero bton show more -->
-                                    <i class="material-icons right"><a href="./photos/showallcomments.php" class="material-icons black-text right">textsms</a></i><br>
+                                    <i class="material-icons right"><a href="./photos/showallcomments.php?id=<?= $photo['photo_id']?>" class="material-icons black-text right">textsms</a></i><br>
                                 </div>
                             </div>
                         </div>
