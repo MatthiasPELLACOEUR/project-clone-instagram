@@ -107,7 +107,7 @@ $photos = $reqPhotos->fetchAll(PDO::FETCH_ASSOC);
                                 </div>
                                 <div class="comment">
                                     <?php
-                                    $reqComments = $bdd->query('SELECT comments.*, users.nickname FROM comments INNER JOIN photos ON photos.id = comments.photos_id INNER JOIN users ON users.id = comments.users_id ORDER BY comments.created_at DESC LIMIT 2');
+                                    $reqComments = $bdd->query('SELECT comments.*, users.nickname FROM comments INNER JOIN photos ON photos.id = comments.photos_id INNER JOIN users ON users.id = comments.users_id ORDER BY comments.created_at DESC');
 
                                     $comments = $reqComments->fetchAll(PDO::FETCH_ASSOC);
 
