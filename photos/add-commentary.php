@@ -17,13 +17,13 @@ if (isset($_POST['nickname']) and isset($_POST['photosid']) and isset($_POST['co
     $userstatement->execute([$_POST['nickname']]);
     $user = $userstatement->fetch(PDO::FETCH_ASSOC);
     $usersid = intval($user['id']);
-    var_dump($usersid);
+    // var_dump($usersid);
     // association id photos  et "input type hidden=photos id
     $photosstatement = $bdd->prepare('SELECT * FROM photos WHERE id=?');
     $photosstatement->execute([$_POST['photosid']]);
     $photo = $photosstatement->fetch(PDO::FETCH_ASSOC);
     $photosid = intval($_POST['photosid']);
-    var_dump($photosid);
+    // var_dump($photosid);
     // insert comment into table 'comments'
     $requestinsertcomment = $bdd->PREPARE('INSERT INTO comments (photos_id,users_id,comment,created_at,ip_address) 
                                          VALUES(?,?,?,?,?)');
@@ -34,7 +34,7 @@ if (isset($_POST['nickname']) and isset($_POST['photosid']) and isset($_POST['co
         $dateTime,
         $ipadress
     ]);
-        header('Location index.php');
+        header('Location: index.php');
 }
 
 require '../partials/header.php';
