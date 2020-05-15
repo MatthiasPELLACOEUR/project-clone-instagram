@@ -34,6 +34,7 @@ if (isset($_POST['nickname']) and isset($_POST['photosid']) and isset($_POST['co
         $dateTime,
         $ipadress
     ]);
+        header('Location index.php');
 }
 
 require '../partials/header.php';

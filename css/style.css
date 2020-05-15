@@ -158,6 +158,9 @@ section {
 .dropdown-color a{
     color: white!important;
 }
+#dropdown-menu li:hover{
+    background-color: #ff2c55;
+}
 
 .nickname {
     display: inline-block;
