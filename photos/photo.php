@@ -1,41 +1,87 @@
 <?php
-require '../partials/header.php';
+session_start();
+// connect bdd
+require '../connection.php';
+// research all messages
+$photoid = $_GET['id'];
+$allcommentsshow = $bdd->query(
+    'SELECT comments.*,users.nickname, photos.id AS photo_id,photos.caption
+                              FROM comments
+                              INNER JOIN photos 
+                                ON photos.id = comments.photos_id 
+                                INNER JOIN users
+                                ON users.id = comments.users_id
+                              ORDER BY comments.created_at ASC'
+);
+$allcomments = $allcommentsshow->fetchAll(PDO::FETCH_ASSOC);
+$reqPhotos = $bdd->query('SELECT photos.*, users.nickname FROM photos INNER JOIN users WHERE photos.id=' . $photoid . '');
+
+$photo = $reqPhotos->fetch(PDO::FETCH_ASSOC);
+// var_dump($photo)
+
+
+include '../partials/header.php';
+
 ?>
 
 <section>
     <div class="container">
         <div class="row">
-            <div class="col s12 offset-s1 col m8 offset-m2">
-                <!-- recup de la photo cliquée et de ses infos (likes, caption, comm) et possibilité de faire
-                    les likes, les comm et mis à jour suivant les req. php-->
-                <div class=profile-card>
-                    <div class="card">
-                        <div id="imgzoomphoto" class="card-image">
-                            <a href="../photos/photo.php"><img src="../pictures/divers1.jfif"></a>
-                        </div>
-                        <div>
-                            <a href="../photos/add-like.php"><i class="material-icons black-text left">favorite_border</i></a>
+            <div class="profile-card">
+                <span class="card-title" id="nicknameprofile"><?= $_SESSION['nickname'] ?></span>
+            </div>
+            
+            <div class="col s12 offset s4">
+                <div class="card-image">
+                    <!-- mis à jour en même temps que les images -->
+                    <img class="zoomimg" src="../pictures/<?php echo $photo['urlphoto'] ?>">
+                </div>
+                <div class="section">
+                    <h5><?= $photo['nickname'] ?></h5>
+                    <p><?= $photo['caption'] ?></p>
+                </div>
+                <div class="divider grey darken-3"></div>
+            </div>
+        </div>
 
-                            <a href="../photos/add-commentary.php"><i class="material-icons black-text left">insert_comment</i></a>
-                            </br>
-                            <a href="../photos/add-like.php" class="black-text left">Count likes</a>
-                            </br>
-                            <!-- mis à jour en même temps que les images -->
-                            <span id="caption" class="card-caption black-text left">Caption</span>
-                        </div>
-                        <!-- ajout de comm de cette page possible, seul le  dernier commentaire apparait suite à mis à jour-->
-                        <div class="card-content">
-                            <span id="lastcomment" class="card-caption black-text left">Last Commentary</span>
-                        </div>
+
+        <div class="row"id="allcomments" >
+            <?php foreach ($allcomments as $comment) {
+                if ($comment['photos_id'] == $photoid) { ?>
+
+                    <div class="update_comments">
+                        <span class="textarea1  left"><?= $comment['nickname'] ?></span>
+                        <span class="textarea1"> : <?= $comment['comment'] ?></span>
+                        <span class="textarea1 right"> <?= $comment['created_at'] ?></span>
                     </div>
+                    <br>
+            <?php }
+            }; ?>
+
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row fixed-bottom" id="add-comment">
+            <form action="./add-commentary.php" method="POST">
+                <div class="input-message">
+                    <input type="hidden" name="photosid" value="<?= $photo['id'] ?>">
+                    <!--  recup the $photoid to send into comments -->
+                    <input type="hidden" name="nickname" class="validate" value="<?= $_SESSION['nickname'] ?>">
+                    <input name="comment" class="materialize" placeholder="Let a Comment">
+                    <a href="./add-commentary.php" class="btn-floating btn-small black waves-light  right btnsubmit" type="submit" name="submit"><i class="material-icons small right">chevron_right</i></a>
                 </div>
-                <div>
-                </div>
+            </form>
+        </div>
+
+    </div>
+
 </section>
 
 <?php
-require '../partials/footer.php';
+include '../partials/footer.php'
 ?>
+
 
 </body>
 

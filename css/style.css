@@ -174,3 +174,27 @@ section {
 .comment span.nickname{
     font-weight: bold!important;
 }
+/* VF */
+.btnsubmit{
+    position: relative;
+    top:-45px;
+}
+/* VF */
+div.card-image{
+    display: flex;
+    justify-content: center;
+    
+}
+
+.zoomimg{
+     max-width: 70%;
+    max-height: 70%;
+}
+#allcomments{
+    height: 82%;
+    overflow: scroll;
+    overflow-x: hidden;
+    top: 56px;
+    scroll-behavior: smooth;
+
+}
