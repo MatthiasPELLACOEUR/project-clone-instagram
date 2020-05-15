@@ -3,14 +3,20 @@ session_start();
 // connect bdd
 require '../connection.php';
 // research all messages
-$allcommentsshow=$bdd->query('SELECT comments.*,users.*
+$photoid= $_GET['id'];
+$allcommentsshow=$bdd->query('SELECT comments.*,users.nickname, photos.id AS photo_id,photos.caption
                               FROM comments
                               INNER JOIN photos 
                                 ON photos.id = comments.photos_id 
                                 INNER JOIN users
-                                ON users.id = comments.users_id'
+                                ON users.id = comments.users_id
+                              ORDER BY comments.created_at ASC'
                             );
 $allcomments=$allcommentsshow->fetchAll(PDO :: FETCH_ASSOC); 
+$reqPhotos = $bdd->query('SELECT * FROM photos WHERE id='.$photoid.'');
+
+$photos = $reqPhotos->fetchAll(PDO::FETCH_ASSOC);
+
 
 ?>
 
@@ -26,45 +32,46 @@ $allcomments=$allcommentsshow->fetchAll(PDO :: FETCH_ASSOC);
     <title>showallcomments</title>
 </head>
 <body>
-    <header>
+   
     <?php
     include '../partials/header.php';
     ?>
-    </header>
+    
     <section>
         <div class="container">
             <div class="row">
-                <div class="col s12 offset -s6 m10 offset -m4 l8 offset -l2">
+                <div class="col s12">
                     
-                    <div class=profile-card>
-                        <img class="profilephoto circle responsive-img" src="../pictures/divers1.jfif" alt="photo-profile">
+                    <div class="profile-card">
                         <span class="card-title " id="nicknameprofile"><?=$_SESSION['nickname']?></span>
                     </div>
-                    
-                    
-                    <?php foreach($allcomments as $comment): ?>
-                       <?php if ($comment['photos_id']==$photos['id']) { ?>
+                    <?php foreach($photos as $photo){?>
                         <div class="captioncomments">
-                            <p class="textarea1 "><?=$comment['caption']?></p>
-                            
+                            <p class="textarea1 "><?=$photo['caption']?></p>
                         </div> 
-                        <div class="divider black"></div>    
-                        <div>
-                            <span class="textarea1  left strong"><?=$comment['nickname']?></span></br>
-                            <span class="textarea1"><?=$comment['comment']?></span>
-                        </div>   
-                    <?php } 
-                    endforeach;?>
+                        <div class="divider grey darken-3"></div> 
+                    <?php }; ?> 
+                   
+                    <?php foreach($allcomments as $comment){
+                        if ($comment['photos_id']==$photoid){?>
+                           
+                            <div class="update_comments">
+                                <span class="textarea1  left"><?=$comment['nickname']?></span>
+                                <span class="textarea1"> : <?=$comment['comment']?></span>
+                                <span class="textarea1 right"> <?=$comment['created_at']?></span>
+                            </div>   
+                    <?php }}; ?> 
+                    
                      
                 <div>    
             </div>
         </div>        
     </section>
-    <footer>
-        <?php
-        include '../partials/footer.php'
-        ?>
-    </footer>
+   
+    <?php
+    include '../partials/footer.php'
+    ?>
+   
   
 </body>
 </html>
