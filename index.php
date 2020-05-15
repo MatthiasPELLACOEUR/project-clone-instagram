@@ -9,7 +9,12 @@ if ($_SESSION['nickname'] == TRUE) {
     header('Location: ./login.php');
 }
 
-require 'partials/bdd-queries.php';
+// require 'partials/bdd-queries.php';
+
+$reqPhotos = $bdd->query('SELECT photos.*, users.nickname FROM photos INNER JOIN users ON photos.user_id = users.id WHERE photos.user_id = users.id ORDER BY photos.created_at DESC');
+
+$photos = $reqPhotos->fetchAll(PDO::FETCH_ASSOC);
+
 
 ?>
 
@@ -72,26 +77,51 @@ require 'partials/bdd-queries.php';
                                 <!-- mis à jour en même temps que les images -->
                                 <img id="postimg" src="./pictures/<?php echo $photo['urlphoto'] ?>">
                             </div>
-                            <div class="card-content ">
+                            <div class="card-content black">
                                 <div class="fav">
                                     <!--les likes se feront sur cette page   -->
-                                    <a href="./photos/add-like.php"><i class="material-icons black-text left">favorite_border</i></a>
+                                    <?php
+                                    if (isset($_SESSION['id'])) {
+                                        $currentUserHasLikedStatement = $bdd->prepare('SELECT id FROM likes WHERE photos_id = ? AND users_id = ?');
+                                        $currentUserHasLikedStatement->execute(array($photo['id'], $_SESSION['id']));
+                                        $currentUserHasLiked = (bool) $currentUserHasLikedStatement->rowCount();
+                                        if ($currentUserHasLiked == TRUE) {
+                                            echo '<a href="./photos/add-like.php?t=1&id=' . $photo['id'] . '"><i class="material-icons red-text left">favorite</i></a>';
+                                        } else {
+                                            $currentUserHasLiked = false;
+                                            echo '<a href="./photos/add-like.php?t=1&id=' . $photo['id'] . '"><i class="material-icons white-text left">favorite_border</i></a>';
+                                        }
+                                    }
+                                    ?>
                                     <!-- ajout de comm de cette page possible, seul le  dernier commentaire apparait suite à mis à jour-->
-                                    <i class="material-icons left"><a href="./photos/add-commentary.php?id=<?= $photo['photo_id'] ?>" class="material-icons black-text left">insert_comment</a></i><br>
-                                    <a href="./photos/add-like.php" class="black-text left"><?= $like['total'] ?> likes</a><br>
+                                    <i class="material-icons left"><a href="./photos/add-commentary.php?id=<?= $photo['id'] ?>" class="material-icons white-text left">insert_comment</a></i><br>
+                                    <?php $likes = $bdd->prepare('SELECT id FROM likes WHERE photos_id = ?');
+                                    $likes->execute(array($photo['id']));
+                                    $likes = $likes->rowCount();
+                                    ?>
+                                    <span class="white-text left"><?= $likes ?> likes</span><br>
                                 </div>
 
                                 <div class="caption-content">
-                                    <span class="caption card-caption black-text left"><?= $photo['caption'] ?></span><br>
+                                    <span class="caption card-caption white-text left"><?= $photo['caption'] ?></span><br>
                                 </div>
                                 <div class="comment">
-                                <?php foreach ($comments as $comment) {
-                                     if($photo['photo_id'] == $comment['photos_id']){ ?>
-                                        <span class="nickname card-caption black-text left"><?= $comment['nickname'] ?></span>
-                                        <span class="lastcomment card-caption black-text left">: <?= $comment['comment'] ?></span><br>
-                                    <?php }}; ?>
+                                    <?php
+                                    $reqComments = $bdd->query('SELECT comments.*, users.nickname FROM comments INNER JOIN photos ON photos.id = comments.photos_id INNER JOIN users ON users.id = comments.users_id ORDER BY comments.created_at DESC LIMIT 2');
+
+                                    $comments = $reqComments->fetchAll(PDO::FETCH_ASSOC);
+
+                                    foreach ($comments as $comment) {
+                                        if ($photo['id'] == $comment['photos_id']) {
+                                            $reqCommentsByPhoto = $bdd->query('SELECT * FROM comments WHERE photos_id = ' . $photo['id'] . '') ?>
+
+
+                                            <span class="nickname card-caption white-text left"><?= $comment['nickname'] ?></span>
+                                            <span class="lastcomment card-caption white-text left">: <?= $comment['comment'] ?></span><br>
+                                    <?php }
+                                    }; ?>
                                     <!-- rajout vero bton show more -->
-                                    <i class="material-icons right"><a href="./photos/showallcomments.php?id=<?= $photo['photo_id']?>" class="material-icons black-text right">textsms</a></i><br>
+                                    <i class="material-icons right"><a href="./photos/showallcomments.php?id=<?= $photo['id'] ?>" class="material-icons white-text right">textsms</a></i><br>
                                 </div>
                             </div>
                         </div>
