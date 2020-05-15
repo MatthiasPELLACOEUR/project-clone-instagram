@@ -120,22 +120,23 @@ $photos = $reqPhotos->fetchAll(PDO::FETCH_ASSOC);
                                             <span class="lastcomment card-caption white-text left">: <?= $comment['comment'] ?></span><br>
                                     <?php }
                                     }; ?>
-                                    <!-- VF -->
-                                    <a href="./photos/photo.php?id=<?= $photo['id']?>" class="btn-small btn-small black waves-light  right btnsubmit"type="submit" name="submit">Show more comments</a><br>
-                                    <form action="./photos/add-commentary.php" method="POST">
-                                        <input type="hidden" name="photosid"  value="<?= $photo['is'] ?>">
-                                        <div class="nickname">
-                                            <!--  recup the $photoid to send into comments -->
-                                            <input  type="hidden" name="nickname" class="validate" value="<?= $_SESSION['nickname'] ?>">
-                                        </div>
-                                        <!-- to send comment into comments-->
-                                        <div class="input-field">
-                                            <input  name="comment" class="materialize" placeholder="Let a Comment">
-                                            <a href="./photos/add-commentary.php"  class="btn-floating btn-small black waves-light  right btnsubmit"type="submit" name="submit"><i class="material-icons small right">chevron_right</i></a>
-                                        </div>
-                                        
-                                    </form>
-                                </div>    
+                                </div>     
+                                <!-- VF -->
+                                <a href="./photos/photo.php?id=<?= $photo['id']?>" class="btn-small btn-small black waves-light  right btnsubmit"type="submit" name="submit">Show more comments</a><br>
+                                <form action="./photos/add-commentary.php" method="POST">
+                                    <input type="hidden" name="photosid"  value="<?= $photo['id'] ?>">
+                                    <div class="nickname">
+                                        <!--  recup the $photoid to send into comments -->
+                                        <input  type="hidden" name="nickname" class="validate" value="<?= $_SESSION['nickname'] ?>">
+                                    </div>
+                                    <!-- to send comment into comments-->
+                                    <div class="input-field">
+                                        <input  name="comment" class="materialize" placeholder="Let a Comment">
+                                        <a href="./photos/add-commentary.php"  class="btn-floating btn-small black waves-light  right btnsubmit"type="submit" name="submit"><i class="material-icons small right">chevron_right</i></a>
+                                    </div>
+                                    
+                                </form>
+                                   
                             </div>
                         </div>
                     <?php endforeach; ?>

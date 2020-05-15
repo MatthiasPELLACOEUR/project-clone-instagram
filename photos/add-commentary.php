@@ -7,8 +7,8 @@ require '../connection.php';
 
 if(isset($_POST['nickname']) and isset($_POST['photosid']) and isset($_POST['comment'])) {
     $nickname = htmlspecialchars($_POST['nickname']);
-    // var_dump($nickname); 
-    // var_dump($photosid);
+    // var_dump($nickname);
+    
     $comment  =  $_POST['comment'];
     $ipadress = getIp();
     // association  users_id et nickname
@@ -23,7 +23,7 @@ if(isset($_POST['nickname']) and isset($_POST['photosid']) and isset($_POST['com
     $photo = $photosstatement->fetch(PDO::FETCH_ASSOC);
     $photosid = intval($_POST['photosid']);
 
-    // var_dump($photosid);
+    // var_dump($photosid);exit;
     // insert comment into table 'comments'
     $requestinsertcomment = $bdd->prepare('INSERT INTO comments (photos_id,users_id,comment,created_at,ip_address) 
                                          VALUES(?,?,?,?,?)');
@@ -34,7 +34,8 @@ if(isset($_POST['nickname']) and isset($_POST['photosid']) and isset($_POST['com
         $dateTime,
         $ipadress
     ]);
-  header('Location: ../index.php');
+  
 }
+header('Location: ../index.php');
 ?>
 

@@ -29,11 +29,11 @@ $photos = $reqPhotos->fetchAll();
 </head>
 
 <body>
-    <header>
+    
         <?php
         include '../partials/header.php';
         ?>
-    </header>
+    
     <section>
         <div class="container">
             <div class="main">
@@ -49,7 +49,7 @@ $photos = $reqPhotos->fetchAll();
                     <?php foreach ($photos as $photo) : ?>
                     <div class="col s4 m4 l4">
                         <div class="card photos-profile">
-                            <a href="../photos/photo.php">
+                            <a href="../photos/photo.php?id=<?= $photo['id']?>">
                                 <img class="max-width" src="../pictures/<?php echo $photo['urlphoto'] ?>">
                             </a>
                         </div>
