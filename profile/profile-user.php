@@ -19,7 +19,7 @@ include '../partials/header.php';
         <div class="container">
             <div class="main">
                 <div class="row">
-                    <?php foreach ($photos as $photo) : 
+                    <?php foreach ($photos as $photo) : //isset + else avec valeur de notre compte
                         if($photo['user_id'] == $_GET['userid']) { ?>
                             <div class="chip chip-profile">
                                 <img src="../pictures/picture_default.png" alt="Contact Person">

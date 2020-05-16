@@ -130,9 +130,9 @@ $photos = $reqPhotos->fetchAll(PDO::FETCH_ASSOC);
                                     }; ?>
                                 </div>
                                 <!-- VF -->
-                                <a href="./photos/photo.php?id=<?= $photo['id'] ?>" class="black white-text left show-more" type="submit" name="submit">Show more comments</a><br>
+                                <a href="./photos/photo.php?id=<?= $photo['id'] ?>" class="black white-text left show-more">Show more comments</a><br>
                                 <div class="row row-comment">
-                                    <form action="./photos/add-commentary.php" class="form-comment" method="POST">
+                                    <form action="/photos/add-commentary.php" method="POST">
                                         <div class="nickname">
                                             <input type="hidden" name="photosid" value="<?= $photo['id'] ?>">
                                             <!--  recup the $photoid to send into comments -->
@@ -140,8 +140,8 @@ $photos = $reqPhotos->fetchAll(PDO::FETCH_ASSOC);
                                         </div>
                                         <!-- to send comment into comments-->
                                         <div class="input-field">
-                                            <input name="comment" class="materialize input-red white-text input-comment" placeholder="Let a Comment">
-                                            <a href="./photos/add-commentary.php" class="btn-floating btn-small black waves-light  right btnsubmit" type="submit" name="submit"><i class="material-icons small right">chevron_right</i></a>
+                                            <input type="text" name="comment" class="materialize input-red white-text input-comment" placeholder="Let a Comment">
+                                            <button class="btn-floating btn-small black waves-light  right btnsubmit" type="submit" name="submit"><i class="material-icons small right">chevron_right</i></button>
                                         </div>
                                     </form>
                                 </div>

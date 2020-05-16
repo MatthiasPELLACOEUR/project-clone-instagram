@@ -27,7 +27,7 @@ $photos = $reqPhotos->fetchAll(PDO::FETCH_ASSOC);
                     <!-- <a href="../index.php" class="linkindex grey darken-4"><span class="appname white-text text-darken-2 ">Clone Instagram</span></a> -->
                     <ul>
                         <li>
-                            <a href="../index.php" class="linkindex grey darken-4"><i class="material-icons left">home</i></a>
+                            <a href="../index.php" class="linkindex grey darken-4"><i class="material-icons">home</i></a>
                         </li>
                     </ul>
                     <?php

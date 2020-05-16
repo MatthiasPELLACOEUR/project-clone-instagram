@@ -56,13 +56,13 @@ include '../partials/header.php';
 
     <div class="container">
         <div class="row fixed-bottom" id="add-comment">
-            <form action="./add-commentary.php" method="POST">
+            <form action="add-commentary.php" method="POST">
                 <div class="input-message">
                     <input type="hidden" name="photosid" value="<?= $photo['id'] ?>">
                     <!--  recup the $photoid to send into comments -->
                     <input type="hidden" name="nickname" class="validate" value="<?= $_SESSION['nickname'] ?>">
-                    <input name="comment" class="materialize add-comment col l11" placeholder="Let a Comment">
-                    <a href="./add-commentary.php" class="btn-floating btn-small black waves-light right btnsubmit" type="submit" name="submit"><i class="material-icons small right">chevron_right</i></a>
+                    <input name="comment" class="materialize add-comment input-pink col l11 white-text" placeholder="Let a Comment">
+                    <button class="btn-floating btn-small black waves-light  right btnsubmit" type="submit" name="submit"><i class="material-icons small right">chevron_right</i></button>
                 </div>
             </form>
         </div>

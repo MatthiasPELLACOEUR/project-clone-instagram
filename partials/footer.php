@@ -1,8 +1,8 @@
 <div class="container-fluid">
     <div class="nav-wrapper grey darken-4">
         <div class="footer-copyright">
-            <span>© 2020 Copyright Matthias Vero clone Instagram</span>
-            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            <span>© 2020 Copyright Mat Vero Clone Instagram</span>
+            <a class="grey-text text-lighten-4 right" href="https://github.com/MatthiasPELLACOEUR/project-clone-instagram">GitHub Clone Instagram</a>
         </div>
 
     </div>

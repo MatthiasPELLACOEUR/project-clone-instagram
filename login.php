@@ -48,9 +48,11 @@ if(isset($_POST['formConnect'])){
             <h1 class="appname white-text">Login</h1>
             <br><br><br>
             <form action="" method="post">
-                <label for="nickname">Nickname :</label><input type="text" name="nicknameConnect" class="input-yellow" value="<?php if(isset($nickname)) { echo $nickname; }?>"><br>
+                <label for="nickname">Nickname :</label>
+                <input type="text" name="nicknameConnect" class="input-yellow" value="<?php if(isset($nickname)) { echo $nickname; }?>"><br>
                 <!-- <label for="mail">Mail :</label><input type="email" name="mail" class="input-red" value=""><br> -->
-                <label for="password">Password :</label><input type="password" name="passwordConnect" class="input-pink"><br>
+                <label for="password">Password :</label>
+                <input type="password" name="passwordConnect" class="input-pink"><br>
                 <label for="register">Haven't an account ? </label>
                     <a href="/register.php">Register!</a>
                 <button class="btn waves-effect waves-light purple right" type="submit" name="formConnect">Login

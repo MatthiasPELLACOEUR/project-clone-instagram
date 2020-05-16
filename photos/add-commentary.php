@@ -34,7 +34,8 @@ if(isset($_POST['nickname']) and isset($_POST['photosid']) and isset($_POST['com
         $dateTime,
         $ipadress
     ]);
-    header('Location: ../index.php');
+
+    header('Location: '.$_SERVER['HTTP_REFERER']);
 }
 ?>
 
