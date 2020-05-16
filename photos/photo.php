@@ -26,38 +26,31 @@ include '../partials/header.php';
 
 <section>
     <div class="container">
-        <div class="row">
-            <div class="profile-card">
-                <span class="card-title" id="nicknameprofile"><?= $_SESSION['nickname'] ?></span>
-            </div>
-            
+        <div class="row zoomall">
             <div class="col s12 offset s4">
                 <div class="card-image">
                     <!-- mis à jour en même temps que les images -->
                     <img class="zoomimg" src="../pictures/<?php echo $photo['urlphoto'] ?>">
                 </div>
-                <div class="section">
+                <div class="section caption-zoom">
                     <h5><?= $photo['nickname'] ?></h5>
                     <p><?= $photo['caption'] ?></p>
                 </div>
-                <div class="divider grey darken-3"></div>
             </div>
         </div>
 
+        <div class="divider grey darken-3"></div>
 
-        <div class="row"id="allcomments" >
+        <div class="row" id="allcomments">
             <?php foreach ($allcomments as $comment) {
                 if ($comment['photos_id'] == $photoid) { ?>
-
                     <div class="update_comments">
                         <span class="textarea1  left"><?= $comment['nickname'] ?></span>
                         <span class="textarea1"> : <?= $comment['comment'] ?></span>
                         <span class="textarea1 right"> <?= $comment['created_at'] ?></span>
-                    </div>
-                    <br>
+                    </div><br>
             <?php }
             }; ?>
-
         </div>
     </div>
 
@@ -68,20 +61,17 @@ include '../partials/header.php';
                     <input type="hidden" name="photosid" value="<?= $photo['id'] ?>">
                     <!--  recup the $photoid to send into comments -->
                     <input type="hidden" name="nickname" class="validate" value="<?= $_SESSION['nickname'] ?>">
-                    <input name="comment" class="materialize" placeholder="Let a Comment">
-                    <a href="./add-commentary.php" class="btn-floating btn-small black waves-light  right btnsubmit" type="submit" name="submit"><i class="material-icons small right">chevron_right</i></a>
+                    <input name="comment" class="materialize add-comment col l11" placeholder="Let a Comment">
+                    <a href="./add-commentary.php" class="btn-floating btn-small black waves-light right btnsubmit" type="submit" name="submit"><i class="material-icons small right">chevron_right</i></a>
                 </div>
             </form>
         </div>
-
     </div>
-
 </section>
 
 <?php
 include '../partials/footer.php'
 ?>
-
 
 </body>
 

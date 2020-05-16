@@ -71,11 +71,15 @@ $photos = $reqPhotos->fetchAll(PDO::FETCH_ASSOC);
                 <div id="main" class="col s12 offset-s1 m6 l4">
                     <!-- le fil d'actualité sera mis à jour à chq fois q'un user mettra de nouvelles photos-->
                     <?php foreach ($photos as $photo) : ?>
-                        <h6 class="card-title" id="nickname"><?= $photo['nickname'] ?></h6>
+                        <a href="./profile/profile-user.php?userid=<?= $photo['user_id'] ?>&nickname=<?=$photo['nickname']?>">
+                            <h6 class="card-title white-text" id="nickname"><?= $photo['nickname'] ?></h6>
+                        </a>
                         <div class="card">
                             <div class="card-image">
                                 <!-- mis à jour en même temps que les images -->
-                                <img id="postimg" src="./pictures/<?php echo $photo['urlphoto'] ?>">
+                                <a href="./photos/photo.php?id=<?= $photo['id'] ?>">
+                                    <img id="postimg" src="./pictures/<?php echo $photo['urlphoto'] ?>">
+                                </a>
                             </div>
                             <div class="card-content black">
                                 <div class="fav">
@@ -85,6 +89,7 @@ $photos = $reqPhotos->fetchAll(PDO::FETCH_ASSOC);
                                         $currentUserHasLikedStatement = $bdd->prepare('SELECT id FROM likes WHERE photos_id = ? AND users_id = ?');
                                         $currentUserHasLikedStatement->execute(array($photo['id'], $_SESSION['id']));
                                         $currentUserHasLiked = (bool) $currentUserHasLikedStatement->rowCount();
+
                                         if ($currentUserHasLiked == TRUE) {
                                             echo '<a href="./photos/add-like.php?t=1&id=' . $photo['id'] . '"><i class="material-icons red-text left">favorite</i></a>';
                                         } else {
@@ -111,32 +116,35 @@ $photos = $reqPhotos->fetchAll(PDO::FETCH_ASSOC);
 
                                     $comments = $reqComments->fetchAll(PDO::FETCH_ASSOC);
 
+                                    $i = 0;
+
                                     foreach ($comments as $comment) {
                                         if ($photo['id'] == $comment['photos_id']) {
+                                            $countComments = $reqComments->rowCount();
+
                                             $reqCommentsByPhoto = $bdd->query('SELECT * FROM comments WHERE photos_id = ' . $photo['id'] . '') ?>
-
-
-                                            <span class="nickname card-caption white-text left"><?= $comment['nickname'] ?></span>
-                                            <span class="lastcomment card-caption white-text left">: <?= $comment['comment'] ?></span><br>
-                                    <?php }
+                                            <span class="nickname card-caption white-text left"><?= $comment['nickname'] ?>: </span>
+                                            <span class="lastcomment card-caption white-text left"><?= $comment['comment'] ?></span><br>
+                                    <?php if (++$i == 2) break;
+                                        }
                                     }; ?>
-                                </div>     
+                                </div>
                                 <!-- VF -->
-                                <a href="./photos/photo.php?id=<?= $photo['id']?>" class="btn-small btn-small black waves-light  right btnsubmit"type="submit" name="submit">Show more comments</a><br>
-                                <form action="./photos/add-commentary.php" method="POST">
-                                    <input type="hidden" name="photosid"  value="<?= $photo['id'] ?>">
-                                    <div class="nickname">
-                                        <!--  recup the $photoid to send into comments -->
-                                        <input  type="hidden" name="nickname" class="validate" value="<?= $_SESSION['nickname'] ?>">
-                                    </div>
-                                    <!-- to send comment into comments-->
-                                    <div class="input-field">
-                                        <input  name="comment" class="materialize" placeholder="Let a Comment">
-                                        <a href="./photos/add-commentary.php"  class="btn-floating btn-small black waves-light  right btnsubmit"type="submit" name="submit"><i class="material-icons small right">chevron_right</i></a>
-                                    </div>
-                                    
-                                </form>
-                                   
+                                <a href="./photos/photo.php?id=<?= $photo['id'] ?>" class="black white-text left show-more" type="submit" name="submit">Show more comments</a><br>
+                                <div class="row row-comment">
+                                    <form action="./photos/add-commentary.php" class="form-comment" method="POST">
+                                        <div class="nickname">
+                                            <input type="hidden" name="photosid" value="<?= $photo['id'] ?>">
+                                            <!--  recup the $photoid to send into comments -->
+                                            <input type="hidden" name="nickname" class="validate" value="<?= $_SESSION['nickname'] ?>">
+                                        </div>
+                                        <!-- to send comment into comments-->
+                                        <div class="input-field">
+                                            <input name="comment" class="materialize input-red white-text input-comment" placeholder="Let a Comment">
+                                            <a href="./photos/add-commentary.php" class="btn-floating btn-small black waves-light  right btnsubmit" type="submit" name="submit"><i class="material-icons small right">chevron_right</i></a>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     <?php endforeach; ?>

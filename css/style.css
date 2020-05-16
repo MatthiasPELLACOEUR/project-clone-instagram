@@ -130,8 +130,17 @@ section {
 .card-content{
     padding: 0px;
 }
-.chip-profile{
-    background-color: rgb(41, 42, 44);
+div.header ul.right{
+    line-height: 94px;
+}
+ul li a{
+    height: 64px;
+}
+ul li a:hover{
+    background-color: transparent;
+}
+div.chip-profile{
+    background-color: transparent;
 }
 #nicknameprofile{
     font-weight: bold;
@@ -146,11 +155,17 @@ section {
     max-height: 270px;
     max-width: 300px;
     overflow: hidden;
+    transition: all ease-in-out 0.3s;
 }
 .max-width{
     display: block;
     max-height: 100%;
     max-width: 100%;
+}
+.photos-profile a:hover{
+    transform: scale(1.15);
+    filter: brightness(40%);
+    transition: all ease-in-out 0.3s;
 }
 .dropdown-color{
     background-color: rgb(41, 42, 44);
@@ -161,11 +176,9 @@ section {
 #dropdown-menu li:hover{
     background-color: #ff2c55;
 }
-
 .nickname {
     display: inline-block;
 }
-
 .nickname .prefix {
     position: relative;
     top : 50px;
@@ -174,27 +187,56 @@ section {
 .comment span.nickname{
     font-weight: bold!important;
 }
-/* VF */
-.btnsubmit{
-    position: relative;
-    top:-45px;
+.show-more{
+    padding-top: 5px;
+    padding-left: 5px;
+    font-size: 0.8em;
 }
 /* VF */
+.btnsubmit{
+    top: 15px;
+}
+/* VF */
+.zoomall{
+    margin-bottom: 0px;
+}
 div.card-image{
     display: flex;
     justify-content: center;
-    
+    margin-top: 30px;    
 }
-
 .zoomimg{
-     max-width: 70%;
-    max-height: 70%;
+    max-width: 50%;
+    max-height: 50%;
+}
+.caption-zoom{
+    padding: 15px 0px 0px 0px;
 }
 #allcomments{
-    height: 82%;
-    overflow: scroll;
+    margin-top: 32px;
+    margin-bottom: 32px;
+    padding-right: 15px;
+    overflow: unset;
     overflow-x: hidden;
     top: 56px;
     scroll-behavior: smooth;
-
+}
+form{
+    height: auto;
+}
+div.input-field{
+    margin: 10px;
+    bottom: 10px;
+}
+.row-comment{
+    height: 60px;
+}
+.form-comment{
+    height: 0px;
+}
+div.input-field input.input-comment{
+    width: 90%;
+}
+input.add-comment{
+    width: 80%;
 }

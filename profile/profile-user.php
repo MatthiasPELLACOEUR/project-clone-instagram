@@ -13,59 +13,40 @@ $reqPhotos = $bdd->query('SELECT photos.*, users.* FROM photos INNER JOIN users 
 
 $photos = $reqPhotos->fetchAll();
 
-
+include '../partials/header.php';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-    
-    <head>
-        <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/materialize.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/style.css">
-    <title>Profile</title>
-</head>
-
-<body>
-    
-        <?php
-        include '../partials/header.php';
-        ?>
-    
     <section>
         <div class="container">
             <div class="main">
                 <div class="row">
-                    <div class="col s12 m4">
-                        <div class="chip chip-profile">                    
-                            <!-- chip here -->
-                            <span class="card-title" id="nicknameprofile"><?= $_SESSION['nickname'] ?></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <?php foreach ($photos as $photo) : ?>
-                    <div class="col s4 m4 l4">
-                        <div class="card photos-profile">
-                            <a href="../photos/photo.php?id=<?= $photo['id']?>">
-                                <img class="max-width" src="../pictures/<?php echo $photo['urlphoto'] ?>">
-                            </a>
-                        </div>
-                    </div>
-                    <?php endforeach; ?>
+                    <?php foreach ($photos as $photo) : 
+                        if($photo['user_id'] == $_GET['userid']) { ?>
+                            <div class="chip chip-profile">
+                                <img src="../pictures/picture_default.png" alt="Contact Person">
+                                <span class="card-title right" id="nicknameprofile"><?= $_GET['nickname'] ?></span>
+                            </div>
+                            <div class="col s12 m6 l3 offset-l1">
+                                <div class="nickname-profile">
+                                </div>
+                                <div class="card photos-profile">
+                                    <a href="../photos/photo.php?id=<?= $photo['id']?>">
+                                        <img class="max-width" src="../pictures/<?php echo $photo['urlphoto'] ?>">
+                                    </a>
+                                </div>
+                            </div>
+                        <?php }
+                    endforeach; ?>
                 </div>
             </div>
         </div>
     </section>
-    <footer>
-        <?php
-        include '../partials/footer.php'
-        ?>
-    </footer>
-    <script href="./js/materialize.min.js"></script>
-    <script href="./js/main.js"></script>
+<footer>
+    <?php
+    include '../partials/footer.php'
+    ?>
+</footer>
+<script href="./js/materialize.min.js"></script>
+<script href="./js/main.js"></script>
 </body>
 
 </html>
