@@ -36,7 +36,7 @@ $photos = $reqPhotos->fetchAll(PDO::FETCH_ASSOC);
                         <ul class="right">
                             <li>
                                 <?php if ($photo['photoProf'] == 0) { ?>
-                                    <a href="/profile/profile-user.php?userid=<?= $_SESSION['id'] ?>&nickname=<?= $_SESSION['nickname'] ?>">
+                                    <a href="../profile/profile-user.php?userid=<?= $_SESSION['id'] ?>&nickname=<?= $_SESSION['nickname'] ?>">
                                         <div class="chip chip-profile">
                                             <img src="../pictures/picture_default.png" alt="Contact Person">
                                             <span class="card-title right" id="nicknameprofile"><?= $_SESSION['nickname'] ?></span>

@@ -4,7 +4,7 @@ session_start();
 require './connection.php';
 
 if ($_SESSION['nickname'] == TRUE) {
-    $username = '<li><a href="/profile/profile-user.php?userid='.$_SESSION['id'].'&nickname='.$_SESSION['nickname'].'" class="linkprofile">' . $_SESSION['nickname'] . '</a></li>';
+    $username = '<li><a href="/profile/profile-user.php?userid=' . $_SESSION['id'] . '&nickname=' . $_SESSION['nickname'] . '" class="linkprofile">' . $_SESSION['nickname'] . '</a></li>';
 } else {
     header('Location: ./login.php');
 }
@@ -71,7 +71,7 @@ $photos = $reqPhotos->fetchAll(PDO::FETCH_ASSOC);
                 <div id="main" class="col s12 offset-s1 m6 l4">
                     <!-- le fil d'actualité sera mis à jour à chq fois q'un user mettra de nouvelles photos-->
                     <?php foreach ($photos as $photo) : ?>
-                        <a href="./profile/profile-user.php?userid=<?= $photo['user_id'] ?>&nickname=<?=$photo['nickname']?>">
+                        <a href="./profile/profile-user.php?userid=<?= $photo['user_id'] ?>&nickname=<?= $photo['nickname'] ?>">
                             <h6 class="card-title white-text" id="nickname"><?= $photo['nickname'] ?></h6>
                         </a>
                         <div class="card">
@@ -99,7 +99,6 @@ $photos = $reqPhotos->fetchAll(PDO::FETCH_ASSOC);
                                     }
                                     ?>
                                     <!-- ajout de comm de cette page possible, seul le  dernier commentaire apparait suite à mis à jour-->
-                                    <i class="material-icons left"><a href="./photos/add-commentary.php?id=<?= $photo['id'] ?>" class="material-icons white-text left">insert_comment</a></i><br>
                                     <?php $likes = $bdd->prepare('SELECT id FROM likes WHERE photos_id = ?');
                                     $likes->execute(array($photo['id']));
                                     $likes = $likes->rowCount();

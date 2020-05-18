@@ -217,6 +217,7 @@ div.card-image{
     display: flex;
     justify-content: center;
     margin-top: 10px;    
+    background-color: rgb(41, 42, 44);
 }
 .zoomimg{
     max-width: 50%;
