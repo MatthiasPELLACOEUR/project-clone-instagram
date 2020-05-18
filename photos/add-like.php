@@ -31,7 +31,7 @@ if(isset($_GET['t'], $_GET['id'], $_SESSION['id']) AND !empty($_GET['t']) AND !e
         }elseif($getLike !== 1) {
             echo 'petit chenapan';
         }
-        header('Location: ../index.php');
+        header('Location: '.$_SERVER['HTTP_REFERER']);
 
     }else {
         echo "t'es nul";

@@ -26,8 +26,7 @@
         justify-content: space-between!important;
     }
     #main {
-        width: 80%; 
-        /* margin-left: 15%!important; */
+        width: 80%;
         transition: all ease-in-out 0.7s;
     }
 }
@@ -49,10 +48,11 @@
         font-size: 1em!important;
     }
     div.card-content.black{
-        height: 400px!important;
+        height: 300px!important;
     }
     div.input-field{
-        padding-top: 100px!important;
+        padding-top: 15px!important;
+
     }
     .btn-floating.btn-small{
         margin-right: 0px!important;
@@ -158,11 +158,14 @@ div.chip-profile{
     font-size: 1.5em;
 }
 .photos-profile{
+    margin-left: 16%;
+}
+.photo-profile{
     max-width: 75%;
 }
 .photos-profile a{
     display: block;
-    max-height: 270px;
+    max-height: 220px;
     max-width: 300px;
     overflow: hidden;
     transition: all ease-in-out 0.3s;
@@ -237,6 +240,7 @@ form{
 div.input-field{
     margin: 0px;
     bottom: 10px;
+    padding-left: 20px;
 }
 .row-comment{
     height: 50px;

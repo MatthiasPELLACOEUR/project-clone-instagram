@@ -4,7 +4,7 @@ session_start();
 require './connection.php';
 
 if ($_SESSION['nickname'] == TRUE) {
-    $username = '<li><a href="./profile/profile-user.php" class="linkprofile">' . $_SESSION['nickname'] . '</a></li>';
+    $username = '<li><a href="/profile/profile-user.php?userid='.$_SESSION['id'].'&nickname='.$_SESSION['nickname'].'" class="linkprofile">' . $_SESSION['nickname'] . '</a></li>';
 } else {
     header('Location: ./login.php');
 }
@@ -54,7 +54,7 @@ $photos = $reqPhotos->fetchAll(PDO::FETCH_ASSOC);
 
                             <!-- Dropdown Structure -->
                             <ul id='dropdown-menu' class='dropdown-content'>
-                                <li class="dropdown-color"><a href="/profile/profile-user.php"><?= $_SESSION['nickname'] ?></a></li>
+                                <li class="dropdown-color"><a href="/profile/profile-user.php?userid=<?= $_SESSION['id'] ?>&nickname=<?= $_SESSION['nickname'] ?>"><?= $_SESSION['nickname'] ?></a></li>
                                 <li class="dropdown-color"><a href="/profile/add-photos.php">Add Photo</a></li>
                                 <li class="dropdown-color"><a href="logout.php">Disconnect</a></li>
                             </ul>
@@ -104,7 +104,7 @@ $photos = $reqPhotos->fetchAll(PDO::FETCH_ASSOC);
                                     $likes->execute(array($photo['id']));
                                     $likes = $likes->rowCount();
                                     ?>
-                                    <span class="white-text left"><?= $likes ?> likes</span><br>
+                                    <span class="white-text left"><?= $likes ?> like(s)</span><br>
                                 </div>
 
                                 <div class="caption-content">

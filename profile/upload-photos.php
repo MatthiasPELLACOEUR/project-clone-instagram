@@ -27,12 +27,6 @@ if(isset($_POST["submit"])) {
   }
 }
 
-// Check if file already exists
-if (file_exists($target_file)) {
-  $uploadOk = 0;
-  $erreur = "Sorry, file already exists.";
-}
-
 // Check file size
 if ($_FILES["fileToUpload"]["size"] > 5000000) {
   $uploadOk = 0;
@@ -55,7 +49,7 @@ if ($uploadOk == 0) {
     $insertPhoto = $bdd->prepare('INSERT INTO photos(user_id, urlphoto, created_at, caption, ip_address) VALUES(?, ?, ?, ?, ?)');
     $insertPhoto->execute(array($userId, $uploadBdd, $dateTime, $caption, getIp()));
     // $erreur = "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
-    header('Location: profile-user.php');
+    header('Location: ../index.php');
   } else {
     $erreur = "Sorry, there was an error uploading your file.";
   }

@@ -23,11 +23,11 @@ $photos = $reqPhotos->fetchAll(PDO::FETCH_ASSOC);
     <header>
         <div class="container-fluid">
             <nav class="row">
-                <div class="nav-wrapper header grey darken-4 col s12 offset-s1 col m7 offset-m2">
+                <div class="nav-wrapper header grey darken-4 col s12 m7 offset-m2 l6 offset-l3">
                     <!-- <a href="../index.php" class="linkindex grey darken-4"><span class="appname white-text text-darken-2 ">Clone Instagram</span></a> -->
                     <ul>
                         <li>
-                            <a href="../index.php" class="linkindex grey darken-4"><i class="material-icons">home</i></a>
+                            <a href="../index.php"><i class="material-icons">home</i></a>
                         </li>
                     </ul>
                     <?php
@@ -36,16 +36,17 @@ $photos = $reqPhotos->fetchAll(PDO::FETCH_ASSOC);
                         <ul class="right">
                             <li>
                                 <?php if ($photo['photoProf'] == 0) { ?>
-                                    <a href="../profile/profile-user.php">
+                                    <a href="/profile/profile-user.php?userid=<?= $_SESSION['id'] ?>&nickname=<?= $_SESSION['nickname'] ?>">
                                         <div class="chip chip-profile">
                                             <img src="../pictures/picture_default.png" alt="Contact Person">
-                                            <span class="card-title right" id="nicknameprofile"><?= $photo['nickname'] ?></span>
+                                            <span class="card-title right" id="nicknameprofile"><?= $_SESSION['nickname'] ?></span>
                                         </div>
                                     </a>
-                                <?php $i = 0;
+                                <?php 
+                                    $i = 0;
                                     if (++$i == 1) break;
                                 } else { ?>
-                                    <a href="../profile/profile-user.php">
+                                    <a href="/profile/profile-user.php?userid=<?= $_SESSION['id'] ?>&nickname=<?= $_SESSION['nickname'] ?>"">
                                         <div class="chip chip-profile">
                                             <img src="./pictures/<?php echo $photo['photoProf'] ?>" alt="Contact Person">
                                             <span class="card-title right" id="nicknameprofile"><?= $photo['user_id'] ?></span>

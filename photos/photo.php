@@ -2,10 +2,12 @@
 session_start();
 // connect bdd
 require '../connection.php';
+// recuperation partial header
+require '../partials/header.php';
 // research all messages
 $photoid = $_GET['id'];
 $allcommentsshow = $bdd->query(
-    'SELECT comments.*,users.nickname, photos.id AS photo_id,photos.caption
+    'SELECT comments.*, users.nickname, photos.id AS photo_id, photos.caption
                               FROM comments
                               INNER JOIN photos 
                                 ON photos.id = comments.photos_id 
@@ -13,14 +15,17 @@ $allcommentsshow = $bdd->query(
                                 ON users.id = comments.users_id
                               ORDER BY comments.created_at ASC'
 );
+
 $allcomments = $allcommentsshow->fetchAll(PDO::FETCH_ASSOC);
-$reqPhotos = $bdd->query('SELECT photos.*, users.nickname FROM photos INNER JOIN users WHERE photos.id=' . $photoid . '');
-
-$photo = $reqPhotos->fetch(PDO::FETCH_ASSOC);
-// var_dump($photo)
 
 
-include '../partials/header.php';
+
+
+// <?php 
+$reqUniquePhoto = $bdd->query('SELECT photos.*, users.nickname FROM photos INNER JOIN users ON users.id = photos.user_id WHERE photos.id=' . $photoid . '');
+
+$photo = $reqUniquePhoto->fetch(PDO::FETCH_ASSOC);
+
 
 ?>
 
@@ -28,14 +33,34 @@ include '../partials/header.php';
     <div class="container">
         <div class="row zoomall">
             <div class="col s12 offset s4">
+
                 <div class="card-image">
                     <!-- mis à jour en même temps que les images -->
                     <img class="zoomimg" src="../pictures/<?php echo $photo['urlphoto'] ?>">
                 </div>
                 <div class="section caption-zoom">
                     <h5><?= $photo['nickname'] ?></h5>
+                    <?php
+                        if (isset($_SESSION['id'])) {
+                            $currentUserHasLikedStatement = $bdd->prepare('SELECT id FROM likes WHERE photos_id = ? AND users_id = ?');
+                            $currentUserHasLikedStatement->execute(array($photo['id'], $_SESSION['id']));
+                            $currentUserHasLiked = (bool) $currentUserHasLikedStatement->rowCount();
+
+                            if ($currentUserHasLiked == TRUE) {
+                                echo '<a href="../photos/add-like.php?t=1&id=' . $photo['id'] . '"><i class="material-icons red-text left">favorite</i></a>';
+                            } else {
+                                $currentUserHasLiked = false;
+                                echo '<a href="../photos/add-like.php?t=1&id=' . $photo['id'] . '"><i class="material-icons white-text left">favorite_border</i></a>';
+                            }
+                        }
+                        $likes = $bdd->prepare('SELECT id FROM likes WHERE photos_id = ?');
+                        $likes->execute(array($photo['id']));
+                        $likes = $likes->rowCount();
+                    ?>
+                    <span class="white-text left"><?= $likes ?> like(s)</span><br>
                     <p><?= $photo['caption'] ?></p>
                 </div>
+
             </div>
         </div>
 
