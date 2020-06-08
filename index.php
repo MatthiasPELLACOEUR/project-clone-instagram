@@ -3,7 +3,7 @@ session_start();
 
 require './connection.php';
 
-if ($_SESSION['nickname'] == TRUE) {
+if (isset($_SESSION['nickname'])) {
     $username = '<li><a href="/profile/profile-user.php?userid=' . $_SESSION['id'] . '&nickname=' . $_SESSION['nickname'] . '" class="linkprofile">' . $_SESSION['nickname'] . '</a></li>';
 } else {
     header('Location: ./login.php');
